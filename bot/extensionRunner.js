@@ -7,7 +7,7 @@ async function launchWithExtension(proxy) {
     });
     const page = await browser.newPage();
     await page.goto('https://app.getgrass.io');
-    await page.waitForTimeout(5000);
+    await new Promise(resolve => setTimeout(resolve, 5000));
     await browser.close();
 }
 
