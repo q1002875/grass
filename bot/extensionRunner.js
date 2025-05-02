@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 async function launchWithExtension(proxy) {
     const browser = await puppeteer.launch({
         headless: "new",
+       // 使用你找到的 Chromium 路徑
         args: proxy ? [`--proxy-server=${proxy}`] : []
     });
     const page = await browser.newPage();
