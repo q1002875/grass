@@ -1,3 +1,4 @@
+
 const puppeteer = require('puppeteer-core');
 
 async function launchWithExtension() {
@@ -8,7 +9,7 @@ async function launchWithExtension() {
     });
 
     const page = await browser.newPage();
-    await page.goto('https://www.example.com');
+    await page.goto('https://app.getgrass.io');
     await page.waitForTimeout(5000);  // 或其他需要等待的時間
     await browser.close();
 }
