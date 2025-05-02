@@ -1,9 +1,9 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 
 async function launchWithExtension(proxy) {
     const browser = await puppeteer.launch({
         headless: "new",
-        executablePath: '/opt/render/.chromium/chromium',
+     
         args: proxy ? [`--proxy-server=${proxy}`] : []
     });
     const page = await browser.newPage();
