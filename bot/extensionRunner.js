@@ -1,15 +1,17 @@
-const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
 
 async function launchWithExtension(proxy) {
+    const executablePath = await chromium.executablePath;
+
     const browser = await puppeteer.launch({
-        headless: "new",
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            ...(proxy ? [`--proxy-server=${proxy}`] : [])
-        ]
+        args: chromium.args.concat(proxy ? [`--proxy-server=${proxy}`] : []),
+        defaultViewport: chromium.defaultViewport,
+        executablePath: executablePath,
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true
     });
+
     const page = await browser.newPage();
     await page.goto('https://app.getgrass.io');
     await new Promise(resolve => setTimeout(resolve, 5000));
