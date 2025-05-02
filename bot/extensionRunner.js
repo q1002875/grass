@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 async function launchWithExtension(proxy) {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: "new",
         args: proxy ? [`--proxy-server=${proxy}`] : []
     });
     const page = await browser.newPage();
